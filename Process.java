@@ -75,10 +75,13 @@ public class Process implements Priority, Comparable<Process>{
 	public int getPriority() {
 		return this.priority;
 	}//end getPriority
-
+	
+	/**
+	 * @return formatted string containing fields of the object
+	 */
 	@Override
 	public String toString() {
-		return "Process [processID=" + processID + ", priority=" + priority + "]";
+		return "Process [processID=" + getProcessID() + ", priority=" + getPriority() + "]";
 	}//end toString
 	
 }//end class

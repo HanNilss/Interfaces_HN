@@ -22,7 +22,7 @@ public class Application {
 			System.out.println(t1.getName()+ " has higher priority");
 		}
 		
-		t2.setStatus(t2.status.IN_PROCESS);
+		t2.setStatus(1);
 		
 		t2.setPriority(5);
 		System.out.println(t2.toString());

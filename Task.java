@@ -6,13 +6,17 @@
  * CS1313ON
  */
 public class Task implements Priority, Comparable<Task>{
+	/**
+	 * Enumeration containing three progress descriptions for a task, each description has an associated value.
+	 */
 	enum Status {
 		NOT_STARTED(0),
 		IN_PROCESS(50),
 		COMPLETE(100);
 		
-		int statusLevel;
-		Status(int statusLevel){
+		private final int statusLevel;
+		
+		private Status(int statusLevel){
 			this.statusLevel = statusLevel;
 		}
 	}//end enum
@@ -20,10 +24,11 @@ public class Task implements Priority, Comparable<Task>{
 	/**
 	 * Name for task.
 	 * Priority for task.
+	 * Status of task
 	 */
 	private String name;
 	private int priority;
-	Status status;
+	private Status s;
 	
 	/**
 	 * Creates a task object and sets the name as a string passed as parameter and sets priority to MIN_PRIORITY
@@ -32,7 +37,7 @@ public class Task implements Priority, Comparable<Task>{
 	public Task(String name) {
 		this.name = name;
 		this.priority = MIN_PRIORITY;
-		setStatus(status.NOT_STARTED);
+		s = Status.NOT_STARTED;
 	}//end preferred constructor
 	
 	/**
@@ -48,14 +53,25 @@ public class Task implements Priority, Comparable<Task>{
 	public void setName(String name) {
 		this.name = name;
 	}//end setName
-	public void setStatus(Status s) {
-		status  = s;
+	public void setStatus(int s) {
+		if(s>-1 && s<3) {
+		switch(s) {
+			case(0): this.s = Status.NOT_STARTED;
+			break;
+			case(1): this.s = Status.IN_PROCESS;
+			break;
+			case(2): this.s = Status.COMPLETE;
+			break;
+			}
+		}
+		else {
+			this.s = Status.NOT_STARTED;
+		}
 	}//end setStatus
 	
 	public Status getStatus() {
-		return this.status;
+		return s;
 	}//end getStatus
-	
 	/**
 	 * @return priority
 	 */
